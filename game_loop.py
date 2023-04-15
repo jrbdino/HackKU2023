@@ -23,6 +23,7 @@ ground_scaled = pygame.transform.scale(back_ground, (1080, 200))
 
 # Obstacles
 fox_surf = pygame.image.load('chicken_graphics/fox.png').convert_alpha()
+fox_rect = fox_surf.get_rect(bottomleft=(750, 465))
 
 
 # main loop
@@ -47,7 +48,7 @@ while 1:
             player_gravity = 0
 
         screen.blit(player_surf, player_rect)
-        screen.blit(fox_surf, (750, 385))
+        screen.blit(fox_surf, fox_rect)
 
     pygame.display.update()
     clock.tick(60)
