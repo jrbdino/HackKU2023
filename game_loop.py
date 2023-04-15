@@ -3,13 +3,15 @@ from sys import exit
 
 pygame.init()
 screen = pygame.display.set_mode((1080, 620))
-
-pygame.display.set_caption("Chicken Game")
+pygame.display.set_caption("Gregory's Great Game")
 clock = pygame.time.Clock()
+# init font if needed here
 
-# initialize
-# backgrounds here
+# import image surface rectangle objects here
+# scuffed imports stay here, do not move out of order
+from characters import *
 
+screen.blit(chick_surf, (0,0))
 
 # main loop
 while 1:
