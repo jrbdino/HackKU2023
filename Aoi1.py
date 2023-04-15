@@ -12,7 +12,8 @@ screen = pygame.display.set_mode((1080,620))
 pygame.display.set_caption('Runner')
 clock = pygame.time.Clock()
 test_font = pygame.font.Font('pygame/fonts/Pixeltype.ttf', 50)
-game_active = True
+title_font = pygame.font.Font('pygame/fonts/Pixeltype.ttf', 75)
+game_active = False
 start_time = 0
 
 sky_surface = pygame.image.load('chicken_graphics/Environment/sky.png').convert()
@@ -26,15 +27,22 @@ player_surf = pygame.image.load('chicken_graphics/Chickmen.png').convert_alpha()
 player_rect = player_surf.get_rect(midbottom = (80,300))
 player_gravity = 0
 
-player_stand = pygame.image.load('chicken_graphics/Chickmen.png').convert_alpha()
-player_stand = pygame.transform.scale(player_stand,(200, 400))
-player_stand_rect = player_stand.get_rect(center = (400,200))
+#start screen
+start_sky = pygame.image.load('chicken_graphics/Environment/start_sunrise.png').convert()
+start_sky_scaled = pygame.transform.scale(start_sky, (1080, 620))
+game_name = title_font.render("Gregory's  Great  Game", False, '#693C98')
+game_name_rect = game_name.get_rect(center = (540,160))
+
+game_message = test_font.render('Press  Space  to  Start',False,'#693C98')
+game_message_rect = game_message.get_rect(center = (540,450))
+# player_stand = pygame.image.load('chicken_graphics/Chickmen.png').convert_alpha()
+# player_stand = pygame.transform.scale(player_stand,(200, 400))
+# player_stand_rect = player_stand.get_rect(center = (400,200))
+screen.blit(game_name,game_name_rect)
+screen.blit(game_message,game_message_rect)
 
 while True:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            exit()
 
         if game_active:
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -62,6 +70,20 @@ while True:
         enemy_rect.x -= 4
         if enemy_rect.right <= 0: enemy_rect.left = 800
         screen.blit(enemy_surf, enemy_rect)
+
+        # player
+        player_gravity += 1
+        player_rect.y += player_gravity
+        if player_rect.bottom >= 300: player_rect.bottom = 300
+
+        #collision
+        if enemy_rect.colliderect(player_rect):
+            game_active = False
+    else:
+        screen.blit(start_sky_scaled,(0,0))
+        screen.blit(game_name,game_name_rect)
+        screen.blit(game_message,game_message_rect)
+
 
     pygame.display.update()
     clock.tick(60)
