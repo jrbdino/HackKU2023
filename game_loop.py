@@ -1,5 +1,27 @@
 import pygame
 from sys import exit
+from random import randint
+# from Aoi1 import display_score
+
+def obstacle_movement(obstacle_list):
+    if obstacle_list:
+        for obstacle_rect in obstacle_list:
+            obstacle_rect.x -= 5
+
+            screen.blit(fox_surf, obstacle_rect)
+
+        obstacle_list = [obstacle for obstacle in obstacle_list if obstacle.x > -100]
+
+        return obstacle_list
+    else:
+        return []
+
+def collisions(player, obstacles):
+    if obstacles:
+        for obstacle_rect in obstacles:
+            if player.colliderect(obstacle_rect):
+                return False
+    return True
 
 pygame.init()
 screen = pygame.display.set_mode((1080, 620))
@@ -25,6 +47,11 @@ ground_scaled = pygame.transform.scale(back_ground, (1080, 200))
 fox_surf = pygame.image.load('chicken_graphics/fox.png').convert_alpha()
 fox_rect = fox_surf.get_rect(bottomleft=(750, 465))
 
+obstacle_rect_list = []
+
+# Obstacle spawner test
+obstacle_timer = pygame.USEREVENT + 1
+pygame.time.set_timer(obstacle_timer, 1500)
 
 # main loop
 while 1:
@@ -37,6 +64,9 @@ while 1:
             if event.key == pygame.K_SPACE:
                 player_gravity -= 20
 
+        if event.type == obstacle_timer:
+            obstacle_rect_list.append(fox_surf.get_rect(bottomleft=(randint(1080, 1380), 465)))
+
     if game_running:
         screen.blit(sky_scaled, (0, -2))
         screen.blit(ground_scaled, (0, 425))
@@ -48,7 +78,14 @@ while 1:
             player_gravity = 0
 
         screen.blit(player_surf, player_rect)
-        screen.blit(fox_surf, fox_rect)
+        # screen.blit(fox_surf, fox_rect)
+
+        # obstacle movement
+        obstacle_rect_list = obstacle_movement(obstacle_rect_list)
+
+        # collisions
+        game_running = collisions(player_rect, obstacle_rect_list)
+
 
     pygame.display.update()
     clock.tick(60)
