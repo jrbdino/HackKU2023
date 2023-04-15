@@ -2,11 +2,13 @@ import pygame
 from sys import exit
 from random import randint
 
+
 def display_score():
     current_time = int(pygame.time.get_ticks() / 1000) - start_time
-    score_surf = test_font.render(f' {current_time}',False,(64,64,64))
-    score_rect = score_surf.get_rect(center = (540,75))
-    screen.blit(score_surf,score_rect)
+    score_surf = test_font.render(f' {current_time}', False, (64, 64, 64))
+    score_rect = score_surf.get_rect(center=(540, 75))
+    screen.blit(score_surf, score_rect)
+
 
 def obstacle_movement(obstacle_list):
     if obstacle_list:
@@ -30,6 +32,17 @@ def collisions(player, obstacles):
     return True
 
 
+def player_animations():
+    global player_surf, player_index
+
+    if player_rect.bottom < 465:
+        player_surf = player_jump
+    else:
+        player_index += 0.1
+        if player_index >= len(player_walk): player_index = 0
+        player_surf = player_walk[int(player_index)]
+
+
 pygame.init()
 screen = pygame.display.set_mode((1080, 620))
 pygame.display.set_caption("Gregory's Great Game")
@@ -40,9 +53,14 @@ test_font = pygame.font.Font('pygame/fonts/Pixeltype.ttf', 50)
 
 # import image surface rectangle objects here
 # player graphics
-player_surf = pygame.image.load('chicken_graphics/Chickmen.png').convert_alpha()
-player_surf = pygame.transform.scale(player_surf, (150, 150))
-player_rect = player_surf.get_rect(bottomleft=(30, 465))
+player_walk1 = pygame.image.load('chicken_graphics/Chickmen.png').convert_alpha()
+player_walk2 = pygame.image.load('chicken_graphics/Chickmen.png')
+player_walk = [player_walk1, player_walk2]
+player_index = 0
+player_surf = player_walk[player_index]
+player_scaled = pygame.transform.scale(player_walk1, (175, 150))
+player_rect = player_scaled.get_rect(bottomleft=(30, 465))
+player_jump = pygame.image.load('chicken_graphics/Chickmen_jump.png')
 player_gravity = 0
 
 # Background and sky
@@ -87,6 +105,7 @@ while 1:
             player_rect.bottom = 465
             player_gravity = 0
 
+        player_animations()
         screen.blit(player_surf, player_rect)
         # screen.blit(fox_surf, fox_rect)
 
