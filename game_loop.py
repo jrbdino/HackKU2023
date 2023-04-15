@@ -16,13 +16,13 @@ player_rect = player_surf.get_rect(bottomleft=(30, 465))
 player_gravity = 0
 
 # Background and sky
-back_sky = pygame.image.load('chicken_graphics/Environment/sky.png')
+back_sky = pygame.image.load('chicken_graphics/Environment/sky.png').convert()
 sky_scaled = pygame.transform.scale(back_sky, (1080, 620))
-back_ground = pygame.image.load('chicken_graphics/Environment/ground.png')
+back_ground = pygame.image.load('chicken_graphics/Environment/ground.png').convert()
 ground_scaled = pygame.transform.scale(back_ground, (1080, 200))
 
 # Obstacles
-fox_surf = pygame.image.load('chicken_graphics/fox.png')
+fox_surf = pygame.image.load('chicken_graphics/fox.png').convert_alpha()
 
 
 # main loop
@@ -37,7 +37,7 @@ while 1:
                 player_gravity -= 20
 
     if game_running:
-        screen.blit(sky_scaled, (0, 0))
+        screen.blit(sky_scaled, (0, -2))
         screen.blit(ground_scaled, (0, 425))
 
         player_gravity += 1
