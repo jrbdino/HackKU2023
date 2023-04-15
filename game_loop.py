@@ -1,7 +1,12 @@
 import pygame
 from sys import exit
 from random import randint
-# from Aoi1 import display_score
+
+def display_score():
+    current_time = int(pygame.time.get_ticks() / 1000) - start_time
+    score_surf = test_font.render(f' {current_time}',False,(64,64,64))
+    score_rect = score_surf.get_rect(center = (540,75))
+    screen.blit(score_surf,score_rect)
 
 def obstacle_movement(obstacle_list):
     if obstacle_list:
@@ -16,6 +21,7 @@ def obstacle_movement(obstacle_list):
     else:
         return []
 
+
 def collisions(player, obstacles):
     if obstacles:
         for obstacle_rect in obstacles:
@@ -23,12 +29,14 @@ def collisions(player, obstacles):
                 return False
     return True
 
+
 pygame.init()
 screen = pygame.display.set_mode((1080, 620))
 pygame.display.set_caption("Gregory's Great Game")
 clock = pygame.time.Clock()
 game_running = True
-# init font if needed here
+start_time = 0
+test_font = pygame.font.Font('pygame/fonts/Pixeltype.ttf', 50)
 
 # import image surface rectangle objects here
 # player graphics
@@ -71,6 +79,8 @@ while 1:
         screen.blit(sky_scaled, (0, -2))
         screen.blit(ground_scaled, (0, 425))
 
+        score = display_score()
+
         player_gravity += 1
         player_rect.y += player_gravity
         if player_rect.bottom >= 465:
@@ -85,7 +95,6 @@ while 1:
 
         # collisions
         game_running = collisions(player_rect, obstacle_rect_list)
-
 
     pygame.display.update()
     clock.tick(60)
