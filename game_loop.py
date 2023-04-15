@@ -11,7 +11,7 @@ clock = pygame.time.Clock()
 # scuffed imports stay here, do not move out of order
 from characters import *
 
-screen.blit(chick_surf, (0,0))
+
 
 # main loop
 while 1:
