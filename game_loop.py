@@ -39,7 +39,8 @@ def player_animations():
         player_surf = player_jump
     else:
         player_index += 0.1
-        if player_index >= len(player_walk): player_index = 0
+        if player_index >= len(player_walk):
+            player_index = 0
         player_surf = player_walk[int(player_index)]
 
 
@@ -53,8 +54,8 @@ test_font = pygame.font.Font('pygame/fonts/Pixeltype.ttf', 50)
 
 # import image surface rectangle objects here
 # player graphics
-player_walk1 = pygame.image.load('chicken_graphics/Chickmen.png').convert_alpha()
-player_walk2 = pygame.image.load('chicken_graphics/Chickmen.png')
+player_walk1 = pygame.image.load('chicken_graphics/Chicken_walk1.png').convert_alpha()
+player_walk2 = pygame.image.load('chicken_graphics/Chicken_walk2.png')
 player_walk = [player_walk1, player_walk2]
 player_index = 0
 player_surf = player_walk[player_index]
