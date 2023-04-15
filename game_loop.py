@@ -13,7 +13,7 @@ def display_score():
 def obstacle_movement(obstacle_list):
     if obstacle_list:
         for obstacle_rect in obstacle_list:
-            obstacle_rect.x -= 5
+            obstacle_rect.x -= 15
 
             screen.blit(fox_surf, obstacle_rect)
 
