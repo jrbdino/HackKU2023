@@ -5,6 +5,7 @@ pygame.init()
 screen = pygame.display.set_mode((1080, 620))
 pygame.display.set_caption("Gregory's Great Game")
 clock = pygame.time.Clock()
+game_running = True
 # init font if needed here
 
 # import image surface rectangle objects here
@@ -21,7 +22,6 @@ back_ground = pygame.image.load('chicken_graphics/Environment/ground.png')
 ground_scaled = pygame.transform.scale(back_ground, (1080, 200))
 
 
-
 # main loop
 while 1:
     for event in pygame.event.get():
@@ -33,16 +33,17 @@ while 1:
             if event.key == pygame.K_SPACE:
                 player_gravity -= 20
 
-    screen.blit(sky_scaled, (0, 0))
-    screen.blit(ground_scaled, (0, 425))
+    if game_running:
+        screen.blit(sky_scaled, (0, 0))
+        screen.blit(ground_scaled, (0, 425))
 
-    player_gravity += 1
-    player_rect.y += player_gravity
-    if player_rect.bottom >= 465:
-        player_rect.bottom = 465
-        player_gravity = 0
+        player_gravity += 1
+        player_rect.y += player_gravity
+        if player_rect.bottom >= 465:
+            player_rect.bottom = 465
+            player_gravity = 0
 
-    screen.blit(player_surf, player_rect)
+        screen.blit(player_surf, player_rect)
 
     pygame.display.update()
     clock.tick(60)
