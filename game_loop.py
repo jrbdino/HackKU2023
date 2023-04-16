@@ -16,7 +16,7 @@ def obstacle_movement(obstacle_list):
         for obstacle_rect in obstacle_list:
             obstacle_rect.x -= 15
 
-            screen.blit(fox_surf, obstacle_rect)
+            screen.blit(fox_scaled, obstacle_rect)
 
         obstacle_list = [obstacle for obstacle in obstacle_list if obstacle.x > -100]
 
@@ -75,6 +75,7 @@ ground_scaled = pygame.transform.scale(back_ground, (1080, 200))
 # Obstacles
 fox_surf = pygame.image.load('chicken_graphics/fox.png').convert_alpha()
 fox_rect = fox_surf.get_rect(bottomleft=(750, 465))
+fox_scaled = pygame.transform.scale(fox_surf, (100, 65))
 
 obstacle_rect_list = []
 
@@ -98,7 +99,7 @@ while 1:
                     player_gravity -= 20
 
             if event.type == obstacle_timer:
-                obstacle_rect_list.append(fox_surf.get_rect(bottomleft=(randint(1080, 1380), 465)))
+                obstacle_rect_list.append(fox_surf.get_rect(bottomleft=(randint(1080, 1380), 405)))
 
         else:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
@@ -119,7 +120,6 @@ while 1:
 
         player_animations()
         screen.blit(player_surf, player_rect)
-        # screen.blit(fox_surf, fox_rect)
 
         # obstacle movement
         obstacle_rect_list = obstacle_movement(obstacle_rect_list)
