@@ -54,8 +54,8 @@ start_time = 0
 score = 0
 game_font = pygame.font.Font('pygame/fonts/Pixeltype.ttf', 65)
 
-# import image surface rectangle objects here
-# player graphics
+# Import image surface rectangle objects here
+# Player graphics
 player_walk1 = pygame.image.load('chicken_graphics/Chicken_walk1.png').convert_alpha()
 player_walk2 = pygame.image.load('chicken_graphics/Chicken_walk2.png').convert_alpha()
 player_walk = [player_walk1, player_walk2]
@@ -79,15 +79,11 @@ fox_scaled = pygame.transform.scale(fox_surf, (155, 100))
 
 obstacle_rect_list = []
 
-# Obstacle spawner test
+# Obstacle spawner
 obstacle_timer = pygame.USEREVENT + 1
 pygame.time.set_timer(obstacle_timer, 1000)
 
-# Game title
-game_title = game_font.render("Game Game", False, "#A93226")
-game_title_rect = game_title.get_rect(midtop=(540, 310))
-
-# main loop
+# Main loop
 while 1:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -121,10 +117,10 @@ while 1:
         player_animations()
         screen.blit(player_surf, player_rect)
 
-        # obstacle movement
+        # Obstacle movement
         obstacle_rect_list = obstacle_movement(obstacle_rect_list)
 
-        # collisions
+        # Collisions
         game_running = collisions(player_rect, obstacle_rect_list)
     # Game over screen, text, in the else statement
     else:
