@@ -95,7 +95,7 @@ while 1:
                     player_gravity -= 20
 
             if event.type == obstacle_timer:
-                obstacle_rect_list.append(fox_surf.get_rect(bottomleft=(randint(1080, 1680), 375)))
+                obstacle_rect_list.append(fox_surf.get_rect(bottomleft=(randint(1080, 1630), 375)))
 
         else:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
