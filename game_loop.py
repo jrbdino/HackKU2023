@@ -57,13 +57,13 @@ game_font = pygame.font.Font('pygame/fonts/Pixeltype.ttf', 65)
 # import image surface rectangle objects here
 # player graphics
 player_walk1 = pygame.image.load('chicken_graphics/Chicken_walk1.png').convert_alpha()
-player_walk2 = pygame.image.load('chicken_graphics/Chicken_walk2.png')
+player_walk2 = pygame.image.load('chicken_graphics/Chicken_walk2.png').convert_alpha()
 player_walk = [player_walk1, player_walk2]
 player_index = 0
 player_surf = player_walk[player_index]
 player_scaled = pygame.transform.scale(player_walk1, (150, 125))
 player_rect = player_scaled.get_rect(bottomleft=(30, 409))
-player_jump = pygame.image.load('chicken_graphics/Chickmen_jump.png')
+player_jump = pygame.image.load('chicken_graphics/Chickmen_jump.png').convert_alpha()
 player_gravity = 0
 
 # Background and sky
@@ -132,10 +132,10 @@ while 1:
         game_name_rect = game_name.get_rect(center=(540, 150))
 
         over_message = game_font.render("Game Over", False, "#A93226")
-        over_message_rect = over_message.get_rect(topleft=(540, 50))
+        over_message_rect = over_message.get_rect(center=(540, 50))
 
         score_message = game_font.render(f'You scored {score} points!', False, "#A93226")
-        score_message_rect = score_message.get_rect(midright=(540, 310))
+        score_message_rect = score_message.get_rect(center=(540, 310))
 
         tryagain_message = game_font.render("Press SPACEBAR to try again", False, "#A93226")
         tryagain_message_rect = tryagain_message.get_rect(midbottom=(540, 570))
@@ -163,14 +163,16 @@ while 1:
 
         else:
             end_sky = pygame.image.load('chicken_graphics/Environment/end_sunset.png').convert_alpha()
+            end_player = pygame.image.load('chicken_graphics/Chicken_sad.png').convert_alpha()
             end_sky_scaled = pygame.transform.scale(end_sky, (1080, 620))
+            end_player_scaled = pygame.transform.scale(end_player, (175, 150))
 
             screen.blit(end_sky_scaled, (0, 0))
             screen.blit(score_message, score_message_rect)
             screen.blit(tryagain_message, tryagain_message_rect)
             screen.blit(over_message, over_message_rect)
-            player_rect = player_scaled.get_rect(midleft=(100, 300))
-            screen.blit(player_walk1, player_rect)
+            player_game_over = end_player_scaled.get_rect(midleft=(100, 300))
+            screen.blit(end_player_scaled, player_game_over)
 
     pygame.display.update()
     clock.tick(60)
