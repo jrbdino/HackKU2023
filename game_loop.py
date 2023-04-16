@@ -75,7 +75,7 @@ ground_scaled = pygame.transform.scale(back_ground, (1080, 200))
 # Obstacles
 fox_surf = pygame.image.load('chicken_graphics/fox.png').convert_alpha()
 fox_rect = fox_surf.get_rect(bottomleft=(750, 465))
-fox_scaled = pygame.transform.scale(fox_surf, (100, 65))
+fox_scaled = pygame.transform.scale(fox_surf, (155, 100))
 
 obstacle_rect_list = []
 
@@ -99,7 +99,7 @@ while 1:
                     player_gravity -= 20
 
             if event.type == obstacle_timer:
-                obstacle_rect_list.append(fox_surf.get_rect(bottomleft=(randint(1080, 1380), 405)))
+                obstacle_rect_list.append(fox_surf.get_rect(bottomleft=(randint(1080, 1380), 375)))
 
         else:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
