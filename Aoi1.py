@@ -35,9 +35,14 @@ game_name_rect = game_name.get_rect(center = (540,160))
 
 game_message = test_font.render('Press  Space  to  Start',False,'#693C98')
 game_message_rect = game_message.get_rect(center = (540,450))
-# player_stand = pygame.image.load('chicken_graphics/Chickmen.png').convert_alpha()
-# player_stand = pygame.transform.scale(player_stand,(200, 400))
-# player_stand_rect = player_stand.get_rect(center = (400,200))
+
+player_stand = pygame.image.load('chicken_graphics/Chickmen_jump.png').convert_alpha()
+player_stand = pygame.transform.scale(player_stand,(200, 170))
+player_stand_rect = player_stand.get_rect(center = (260,280))
+
+fox_stand = pygame.image.load('chicken_graphics/fox.png').convert_alpha()
+fox_stand = pygame.transform.scale(fox_stand,(200,100))
+fox_stand_rect = fox_stand.get_rect(center = (900,400))
 screen.blit(game_name,game_name_rect)
 screen.blit(game_message,game_message_rect)
 
@@ -81,6 +86,8 @@ while True:
             game_active = False
     else:
         screen.blit(start_sky_scaled,(0,0))
+        screen.blit(player_stand,player_stand_rect)
+        screen.blit(fox_stand,fox_stand_rect)
         screen.blit(game_name,game_name_rect)
         screen.blit(game_message,game_message_rect)
 
