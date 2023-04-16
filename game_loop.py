@@ -81,7 +81,7 @@ obstacle_rect_list = []
 
 # Obstacle spawner test
 obstacle_timer = pygame.USEREVENT + 1
-pygame.time.set_timer(obstacle_timer, 1500)
+pygame.time.set_timer(obstacle_timer, 1000)
 
 # Game title
 game_title = game_font.render("Game Game", False, "#A93226")
@@ -99,7 +99,7 @@ while 1:
                     player_gravity -= 20
 
             if event.type == obstacle_timer:
-                obstacle_rect_list.append(fox_surf.get_rect(bottomleft=(randint(1080, 1380), 375)))
+                obstacle_rect_list.append(fox_surf.get_rect(bottomleft=(randint(1080, 1680), 375)))
 
         else:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
