@@ -39,7 +39,7 @@ We learned how to use the pygame module to make a 2D game and learned more about
 ## What's next for Gregory's Great Game
 We would like to add more enemies and different obstacles to the game.  We want to add scaling difficulty over time.  We also want to make it so if you are holding down the jump button when on the ground, it will let you automatically jump again.  We also want to learn object-oriented programming (OOP) for pygame.
 
-## Technologies Uued
+## Technologies Used
 Python 3.10+, pygame, GitHub Desktop, JetBrains PyCharm
 
 ## GitHub Link
