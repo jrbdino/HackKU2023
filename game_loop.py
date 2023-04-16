@@ -52,7 +52,7 @@ clock = pygame.time.Clock()
 game_running = False
 start_time = 0
 score = 0
-game_font = pygame.font.Font('pygame/fonts/Pixeltype.ttf', 50)
+game_font = pygame.font.Font('pygame/fonts/Pixeltype.ttf', 65)
 
 # import image surface rectangle objects here
 # player graphics
@@ -131,8 +131,6 @@ while 1:
         game_name = game_font.render("Gregory's  Great  Game", False, '#693C98')
         game_name_rect = game_name.get_rect(center=(540, 150))
 
-
-
         over_message = game_font.render("Game Over", False, "#A93226")
         over_message_rect = over_message.get_rect(topleft=(540, 50))
 
@@ -148,11 +146,11 @@ while 1:
 
             player_stand = pygame.image.load('chicken_graphics/Chickmen_jump.png').convert_alpha()
             player_stand = pygame.transform.scale(player_stand, (200, 170))
-            player_stand_rect = player_stand.get_rect(center=(260, 280))
+            player_stand_rect = player_stand.get_rect(center=(240, 280))
 
             fox_stand = pygame.image.load('chicken_graphics/fox.png').convert_alpha()
             fox_stand = pygame.transform.scale(fox_stand, (200, 100))
-            fox_stand_rect = fox_stand.get_rect(center=(900, 400))
+            fox_stand_rect = fox_stand.get_rect(center=(900, 330))
 
             game_message = game_font.render('Press  Space  to  Start', False, '#693C98')
             game_message_rect = game_message.get_rect(center=(540, 450))
