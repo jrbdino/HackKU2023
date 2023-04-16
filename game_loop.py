@@ -36,7 +36,7 @@ def collisions(player, obstacles):
 def player_animations():
     global player_surf, player_index
 
-    if player_rect.bottom < 465:
+    if player_rect.bottom < 410:
         player_surf = player_jump
     else:
         player_index += 0.1
@@ -61,8 +61,8 @@ player_walk2 = pygame.image.load('chicken_graphics/Chicken_walk2.png')
 player_walk = [player_walk1, player_walk2]
 player_index = 0
 player_surf = player_walk[player_index]
-player_scaled = pygame.transform.scale(player_walk1, (175, 150))
-player_rect = player_scaled.get_rect(bottomleft=(30, 465))
+player_scaled = pygame.transform.scale(player_walk1, (150, 125))
+player_rect = player_scaled.get_rect(bottomleft=(30, 409))
 player_jump = pygame.image.load('chicken_graphics/Chickmen_jump.png')
 player_gravity = 0
 
@@ -94,7 +94,7 @@ while 1:
             pygame.quit()
             exit()
         if game_running:
-            if event.type == pygame.KEYDOWN and player_rect.bottom >= 465:
+            if event.type == pygame.KEYDOWN and player_rect.bottom >= 405:
                 if event.key == pygame.K_SPACE:
                     player_gravity -= 20
 
@@ -114,8 +114,8 @@ while 1:
 
         player_gravity += 1
         player_rect.y += player_gravity
-        if player_rect.bottom >= 465:
-            player_rect.bottom = 465
+        if player_rect.bottom >= 410:
+            player_rect.bottom = 410
             player_gravity = 0
 
         player_animations()
